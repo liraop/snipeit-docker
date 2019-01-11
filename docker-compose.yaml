@@ -1,0 +1,45 @@
+version: "2"
+services:
+  db:
+    image: mysql:5.6
+    container_name: snipeit-db
+    hostname: snipeit-db
+    restart: always
+    environment:
+        - MYSQL_ROOT_PASSWORD=teste
+        - MYSQL_DATABASE=teste
+        - MYSQL_USER=teste
+        - MYSQL_PASSWORD=teste
+    networks:
+      snipeit:
+        aliases:
+          - db
+
+  server:
+    image: snipe/snipe-it
+    container_name: snipeit-server
+    hostname: snipeit-server
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=true
+      - APP_KEY=base64:D5oGA+zhFSVA3VwuoZoQ21RAcwBtJv/RGiqOcZ7BUvI=
+      - APP_URL=http://127.0.0.1:80
+      - APP_TIMEZONE=America/Recife
+      - APP_LOCALE=en
+      - DB_HOST=db
+      - DB_CONNECTION=mysql
+      - MYSQL_ROOT_PASSWORD=teste
+      - MYSQL_DATABASE=teste
+      - MYSQL_USER=teste
+      - MYSQL_PASSWORD=teste
+    ports:
+      - "80:80"
+    networks:
+      - snipeit
+
+networks:
+  snipeit:
+    driver: bridge
