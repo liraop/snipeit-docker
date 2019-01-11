@@ -10,6 +10,8 @@ services:
         - MYSQL_DATABASE=teste
         - MYSQL_USER=teste
         - MYSQL_PASSWORD=teste
+    volumes:
+     - snipeit-db-vol:/var/lib/mysql
     networks:
       snipeit:
         aliases:
@@ -24,7 +26,7 @@ services:
       - db
     environment:
       - APP_ENV=production
-      - APP_DEBUG=true
+      - APP_DEBUG=false
       - APP_KEY=base64:D5oGA+zhFSVA3VwuoZoQ21RAcwBtJv/RGiqOcZ7BUvI=
       - APP_URL=http://127.0.0.1:80
       - APP_TIMEZONE=America/Recife
@@ -39,6 +41,9 @@ services:
       - "80:80"
     networks:
       - snipeit
+
+volumes:
+  snipeit-db-vol:
 
 networks:
   snipeit:
