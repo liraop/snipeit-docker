@@ -26,17 +26,24 @@ services:
       - db
     environment:
       - APP_ENV=production
-      - APP_DEBUG=false
+      - APP_DEBUG=true
       - APP_KEY=base64:D5oGA+zhFSVA3VwuoZoQ21RAcwBtJv/RGiqOcZ7BUvI=
       - APP_URL=http://127.0.0.1:80
       - APP_TIMEZONE=America/Recife
-      - APP_LOCALE=en
+      - APP_LOCALE=pt-BR
       - DB_HOST=db
       - DB_CONNECTION=mysql
       - MYSQL_ROOT_PASSWORD=teste
       - MYSQL_DATABASE=teste
       - MYSQL_USER=teste
       - MYSQL_PASSWORD=teste
+      - MAIL_PORT_587_TCP_ADDR=
+      - MAIL_PORT_587_TCP_PORT=
+      - MAIL_ENV_FROM_ADDR=
+      - MAIL_ENV_USERNAME=
+      - MAIL_ENV_PASSWORD=
+      - MAIL_ENV_FROM_NAME=
+      - MAIL_ENV_ENCRYPTION=
     ports:
       - "80:80"
     networks:
