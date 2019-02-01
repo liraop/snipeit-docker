@@ -25,10 +25,11 @@ services:
     depends_on:
       - db
     environment:
+      # remember to set the proper configs on mail server 
       - APP_ENV=production
-      - APP_DEBUG=true
+      - APP_DEBUG=false
       - APP_KEY=base64:D5oGA+zhFSVA3VwuoZoQ21RAcwBtJv/RGiqOcZ7BUvI=
-      - APP_URL=http://127.0.0.1:80
+      - APP_URL=https://localhost/
       - APP_TIMEZONE=America/Recife
       - APP_LOCALE=pt-BR
       - DB_HOST=db
@@ -45,7 +46,11 @@ services:
       - MAIL_ENV_FROM_NAME=
       - MAIL_ENV_ENCRYPTION=
     ports:
-      - "80:80"
+      # change ports as you wish
+      - "8082:443"
+    volumes:
+      # copy certs to snipeit-server (check on documentation for correct naming)
+     - ./certs/:/var/lib/snipeit/ssl/
     networks:
       - snipeit
 
